@@ -1,0 +1,150 @@
+<!-- En-tête -->
+<header class="intro">
+  <div class="wrap intro__inner">
+    <div class="intro__text">
+      <p class="intro__year">Programme 2026</p>
+      <h1 class="intro__title">Conférences et événements tech</h1>
+      <p class="intro__lead">
+        Choisissez vos sessions, vérifiez les places restantes et réservez en un clic.
+      </p>
+    </div>
+
+    <dl class="intro__stats">
+      <div>
+        <dt>Conférences</dt>
+        <dd>{{ conferences.length }}</dd>
+      </div>
+      <div>
+        <dt>Places disponibles</dt>
+        <dd>{{ totalAvailablePlaces }}</dd>
+      </div>
+    </dl>
+  </div>
+</header>
+
+<main class="wrap page">
+
+  <!-- Message de réservation -->
+  @if (reservationMessage) {
+    <div class="notice" role="status">
+      <i class="bi bi-check-circle-fill"></i>
+      <p><strong>Réservation confirmée.</strong> {{ reservationMessage }}</p>
+      <button type="button" class="notice__close" (click)="reservationMessage = null" aria-label="Fermer">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+  }
+
+  <!-- Recherche et tri -->
+  <div class="toolbar">
+    <label class="field field--search">
+      <i class="bi bi-search"></i>
+      <input
+        type="text"
+        placeholder="Rechercher par titre ou description"
+        [(ngModel)]="searchTerm" />
+      @if (searchTerm) {
+        <button type="button" class="field__clear" (click)="searchTerm = ''" aria-label="Effacer la recherche">
+          <i class="bi bi-x-circle-fill"></i>
+        </button>
+      }
+    </label>
+
+    <label class="field field--sort">
+      <span class="field__label">Trier par</span>
+      <select [(ngModel)]="sortBy">
+        <option value="date">Date</option>
+        <option value="places-desc">Places : plus au moins</option>
+        <option value="places-asc">Places : moins au plus</option>
+        <option value="title">Titre : A-Z</option>
+      </select>
+    </label>
+  </div>
+
+  <p class="count">
+    <strong>{{ filteredConferences.length }}</strong>
+    conférence(s) affichée(s)
+  </p>
+
+  <!-- Liste des conférences -->
+  <ul class="list">
+
+    @for (conf of filteredConferences; track conf.title) {
+
+      <li class="item"
+          [class.item--low]="(conf.nbrMax - conf.nbrReservation) > 0 && (conf.nbrMax - conf.nbrReservation) <= 15"
+          [class.item--full]="conf.nbrReservation >= conf.nbrMax">
+
+        <!-- Date -->
+        <time class="item__date">
+          <span class="item__day">{{ conf.date | date:'dd' }}</span>
+          <span class="item__month">{{ conf.date | date:'MMM' }}</span>
+          <span class="item__yearnum">{{ conf.date | date:'y' }}</span>
+        </time>
+
+        <!-- Image -->
+        <img class="item__img" [src]="conf.Picture" [alt]="conf.title" loading="lazy" />
+
+        <!-- Contenu -->
+        <div class="item__body">
+          <h2 class="item__title">{{ conf.title }}</h2>
+          <p class="item__desc">{{ conf.description }}</p>
+          <p class="item__meta">
+            <i class="bi bi-calendar3"></i> {{ conf.date | date:'fullDate' }}
+            <span class="item__sep"></span>
+            <i class="bi bi-people"></i> {{ conf.nbrMax }} places au total
+          </p>
+        </div>
+
+        <!-- Disponibilité et action -->
+        <div class="item__side">
+
+          <p class="status">
+            @if ((conf.nbrMax - conf.nbrReservation) > 15) {
+              <span class="status__dot status__dot--ok"></span>
+              {{ conf.nbrMax - conf.nbrReservation }} places disponibles
+            } @else if ((conf.nbrMax - conf.nbrReservation) > 0) {
+              <span class="status__dot status__dot--low"></span>
+              Plus que {{ conf.nbrMax - conf.nbrReservation }} places
+            } @else {
+              <span class="status__dot status__dot--full"></span>
+              Complet
+            }
+          </p>
+
+          <div class="meter" role="progressbar"
+               [attr.aria-valuenow]="conf.nbrReservation"
+               aria-valuemin="0"
+               [attr.aria-valuemax]="conf.nbrMax">
+            <span class="meter__fill" [style.width.%]="(conf.nbrReservation / conf.nbrMax) * 100"></span>
+          </div>
+          <p class="meter__caption">{{ conf.nbrReservation }} réservations sur {{ conf.nbrMax }}</p>
+
+          <button
+            type="button"
+            class="btn-reserve"
+            [disabled]="conf.nbrReservation >= conf.nbrMax"
+            (click)="reservePlace(conf)">
+            @if (conf.nbrReservation < conf.nbrMax) {
+              Réserver ma place
+            } @else {
+              Complet
+            }
+          </button>
+        </div>
+      </li>
+
+    } @empty {
+
+      <li class="empty">
+        <i class="bi bi-search"></i>
+        <h2>Aucune conférence trouvée</h2>
+        <p>Aucun résultat pour cette recherche. Modifiez les mots saisis ou effacez la recherche.</p>
+        <button type="button" class="btn-reserve btn-reserve--ghost" (click)="searchTerm = ''">
+          Effacer la recherche
+        </button>
+      </li>
+
+    }
+  </ul>
+</main>

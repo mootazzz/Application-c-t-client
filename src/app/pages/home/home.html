@@ -1,0 +1,29 @@
+<input
+  type="text"
+  name="search"
+  class="form-control"
+  placeholder="Search by Title"
+  [(ngModel)]="searchTitle">
+
+<h1>{{searchTitle}}</h1>
+
+<div class="row">
+  <!--@for: directive Angular-->
+  @for(conf of list; track conf.title){
+    @if(!searchTitle || conf.title.toLowerCase().includes(searchTitle.toLowerCase())){
+      <div class="col-md-4">
+        <div class="card">
+          <img [src]="conf.Picture" class="card-img-top" alt="">
+          <div class="card-body">
+            <!--Data Binding: Interpolation{{}}-->
+            <h5 class="card-title">{{conf.title|uppercase}}</h5>
+            <p class="card-text">{{conf.description}}</p>
+            <p class="card-text">{{conf.date}}</p>
+            <p class="card-text">Places : {{conf.nbrMax - conf.nbrReservation}}</p>
+            <button class="btn btn-small btn-success" [disabled]="conf.nbrMax==conf.nbrReservation">Participate</button>
+          </div>
+        </div>
+      </div>
+    }
+  }
+</div>

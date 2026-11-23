@@ -1,0 +1,344 @@
+/*
+  Ajouter dans index.html :
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+*/
+
+:host {
+  --paper: #f2f5fa;
+  --card: #ffffff;
+  --ink: #0e1b2c;
+  --muted: #5a6779;
+  --line: #d9e0ea;
+  --cobalt: #2540d9;
+  --cobalt-dark: #1a2fa8;
+  --ok: #1f8a5b;
+  --low: #c98200;
+  --full: #c8332b;
+
+  display: block;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Public Sans", system-ui, sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+* { box-sizing: border-box; }
+
+.wrap {
+  width: min(1080px, 100% - 2.5rem);
+  margin-inline: auto;
+}
+
+/* ---------- En-tête ---------- */
+.intro {
+  background: var(--cobalt);
+  color: #fff;
+  padding: 3.5rem 0 3rem;
+}
+
+.intro__inner {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.intro__year {
+  margin: 0 0 .5rem;
+  font-weight: 600;
+  color: #c3ccff;
+}
+
+.intro__title {
+  margin: 0 0 .75rem;
+  max-width: 14ch;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.intro__lead {
+  margin: 0;
+  max-width: 46ch;
+  color: #dfe4ff;
+}
+
+.intro__stats {
+  display: flex;
+  gap: 2.5rem;
+  margin: 0;
+}
+
+.intro__stats dt {
+  font-size: .9rem;
+  color: #c3ccff;
+}
+
+.intro__stats dd {
+  margin: 0;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 700;
+  font-size: 2.4rem;
+  line-height: 1.1;
+}
+
+/* ---------- Page ---------- */
+.page { padding: 2rem 0 4rem; }
+
+/* Message */
+.notice {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  padding: .9rem 1.1rem;
+  margin-bottom: 1.5rem;
+  background: #e6f5ee;
+  border-left: 4px solid var(--ok);
+  border-radius: 6px;
+  color: #0f4d33;
+}
+.notice i.bi-check-circle-fill { font-size: 1.3rem; color: var(--ok); }
+.notice p { margin: 0; flex: 1; }
+.notice__close {
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  padding: .25rem;
+}
+
+/* Barre d'outils */
+.toolbar {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 .9rem;
+  height: 3rem;
+}
+.field:focus-within {
+  border-color: var(--cobalt);
+  outline: 3px solid rgba(37, 64, 217, .18);
+}
+.field--search { flex: 1 1 320px; }
+.field--sort { flex: 0 1 280px; }
+.field i { color: var(--muted); }
+.field__label { font-size: .85rem; color: var(--muted); white-space: nowrap; }
+
+.field input,
+.field select {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  color: var(--ink);
+  outline: none;
+  height: 100%;
+}
+
+.field__clear {
+  border: 0;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.count { margin: 0 0 1rem; color: var(--muted); }
+.count strong { color: var(--ink); }
+
+/* ---------- Liste ---------- */
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 2px solid var(--ink);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 84px 200px 1fr 250px;
+  gap: 1.5rem;
+  align-items: start;
+  padding: 1.6rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Date */
+.item__date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: .2rem;
+  line-height: 1;
+}
+.item__day {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 800;
+  font-size: 2.8rem;
+  letter-spacing: -0.03em;
+}
+.item__month {
+  margin-top: .3rem;
+  font-weight: 600;
+  color: var(--cobalt);
+  text-transform: lowercase;
+}
+.item__yearnum {
+  margin-top: .2rem;
+  font-size: .8rem;
+  color: var(--muted);
+}
+
+/* Image */
+.item__img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 6px;
+  background: var(--line);
+}
+
+/* Corps */
+.item__title {
+  margin: 0 0 .5rem;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 700;
+  font-size: 1.45rem;
+  line-height: 1.2;
+}
+.item__desc {
+  margin: 0 0 .9rem;
+  color: var(--muted);
+  max-width: 62ch;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.item__meta {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .4rem;
+  font-size: .88rem;
+  color: var(--muted);
+}
+.item__meta i { color: var(--cobalt); }
+.item__sep {
+  width: 1px;
+  height: 1em;
+  background: var(--line);
+  margin: 0 .6rem;
+}
+
+/* Disponibilité */
+.item__side { display: flex; flex-direction: column; gap: .5rem; }
+
+.status {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-weight: 600;
+}
+.status__dot {
+  width: .6rem;
+  height: .6rem;
+  border-radius: 50%;
+  background: var(--ok);
+}
+.status__dot--low { background: var(--low); }
+.status__dot--full { background: var(--full); }
+
+.meter {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--line);
+  overflow: hidden;
+}
+.meter__fill {
+  display: block;
+  height: 100%;
+  background: var(--ok);
+  transition: width .3s ease;
+}
+.item--low .meter__fill { background: var(--low); }
+.item--full .meter__fill { background: var(--full); }
+
+.meter__caption { margin: 0 0 .5rem; font-size: .82rem; color: var(--muted); }
+
+/* Bouton */
+.btn-reserve {
+  height: 2.9rem;
+  padding: 0 1.2rem;
+  border: 2px solid var(--cobalt);
+  border-radius: 8px;
+  background: var(--cobalt);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease;
+}
+.btn-reserve:hover:not(:disabled) { background: var(--cobalt-dark); border-color: var(--cobalt-dark); }
+.btn-reserve:focus-visible { outline: 3px solid rgba(37, 64, 217, .35); outline-offset: 2px; }
+.btn-reserve:disabled {
+  background: transparent;
+  border-color: var(--line);
+  color: var(--muted);
+  cursor: not-allowed;
+}
+.btn-reserve--ghost { background: transparent; color: var(--cobalt); }
+.btn-reserve--ghost:hover:not(:disabled) { color: #fff; }
+
+.item--full .item__img { filter: grayscale(1); opacity: .7; }
+.item--full .item__day { color: var(--muted); }
+
+/* État vide */
+.empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 1rem;
+}
+.empty i { font-size: 2.5rem; color: var(--muted); }
+.empty h2 { margin: .75rem 0 .4rem; font-family: "Bricolage Grotesque", sans-serif; }
+.empty p { margin: 0 auto 1.25rem; max-width: 40ch; color: var(--muted); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 960px) {
+  .item {
+    grid-template-columns: 72px 1fr;
+    grid-template-areas:
+      "date img"
+      "body body"
+      "side side";
+  }
+  .item__date { grid-area: date; }
+  .item__img  { grid-area: img; aspect-ratio: 16 / 9; }
+  .item__body { grid-area: body; }
+  .item__side { grid-area: side; }
+}
+
+@media (max-width: 520px) {
+  .field--sort { flex-basis: 100%; }
+  .intro__stats { gap: 1.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

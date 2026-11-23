@@ -1,0 +1,170 @@
+/*
+  Navbar assortie au design "programme" (cobalt).
+  Aucun changement HTML nécessaire : le CSS cible les classes Bootstrap existantes.
+  Polices : mêmes liens Google Fonts que la page des conférences.
+*/
+
+.navbar {
+  --nav-bg: #0e1b2c;
+  --nav-cobalt: #2540d9;
+  --nav-accent: #8fa2ff;
+  --nav-text: #c9d3e3;
+  --nav-line: rgba(255, 255, 255, 0.12);
+
+  background: var(--nav-bg) !important;
+  border-bottom: 3px solid var(--nav-cobalt);
+  box-shadow: 0 6px 18px rgba(14, 27, 44, 0.25) !important;
+  font-family: "Public Sans", system-ui, sans-serif;
+}
+
+/* ---------- Logo ---------- */
+.navbar .navbar-brand {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em;
+  color: #fff !important;
+  transition: opacity 0.15s ease;
+}
+
+.navbar .navbar-brand:hover { opacity: 0.85; }
+
+.navbar .navbar-brand .text-primary { color: var(--nav-accent) !important; }
+
+.navbar .navbar-brand i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 8px;
+  background: var(--nav-cobalt);
+  color: #fff !important;
+  font-size: 1.15rem !important;
+}
+
+/* ---------- Liens ---------- */
+.navbar .nav-link {
+  position: relative;
+  color: var(--nav-text) !important;
+  font-weight: 500;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  transition: color 0.15s ease;
+}
+
+.navbar .nav-link i { color: var(--nav-accent); }
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus-visible {
+  color: #fff !important;
+}
+
+/* Soulignement du lien actif / survolé */
+.navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 0;
+  height: 2px;
+  background: var(--nav-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+}
+
+.navbar .nav-link:hover::after,
+.navbar .nav-link.active::after {
+  transform: scaleX(1);
+}
+
+.navbar .nav-link.active {
+  color: #fff !important;
+  font-weight: 600;
+}
+
+.navbar .nav-link:focus-visible {
+  outline: 2px solid var(--nav-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------- Bouton "Mon Espace" ---------- */
+.navbar .btn-outline-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-border-color: var(--nav-accent);
+  --bs-btn-hover-bg: var(--nav-cobalt);
+  --bs-btn-hover-border-color: var(--nav-cobalt);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-active-bg: #1a2fa8;
+  --bs-btn-active-border-color: #1a2fa8;
+  --bs-btn-active-color: #fff;
+
+  font-weight: 600;
+  padding: 0.5rem 1.1rem;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.navbar .btn-outline-primary:focus-visible {
+  box-shadow: 0 0 0 3px rgba(143, 162, 255, 0.4);
+}
+
+/* ---------- Bouton burger ---------- */
+.navbar .navbar-toggler {
+  border: 1px solid var(--nav-line) !important;
+  border-radius: 8px;
+  padding: 0.4rem 0.6rem;
+}
+
+.navbar .navbar-toggler:focus {
+  box-shadow: 0 0 0 3px rgba(143, 162, 255, 0.4);
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 991.98px) {
+  .navbar .navbar-collapse {
+    margin-top: 0.9rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid var(--nav-line);
+  }
+
+  .navbar .navbar-nav {
+    align-items: stretch !important;
+  }
+
+  .navbar .nav-link {
+    padding: 0.8rem 0.25rem;
+    border-bottom: 1px solid var(--nav-line);
+  }
+
+  /* Le soulignement devient une barre à gauche */
+  .navbar .nav-link::after {
+    left: 0;
+    right: auto;
+    top: 25%;
+    bottom: 25%;
+    width: 3px;
+    height: auto;
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+
+  .navbar .nav-link:hover::after,
+  .navbar .nav-link.active::after {
+    transform: scaleY(1);
+  }
+
+  .navbar .nav-link.active { padding-left: 0.9rem; }
+
+  .navbar .btn-outline-primary {
+    width: 100%;
+    padding: 0.7rem 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar *,
+  .navbar *::after {
+    transition: none !important;
+  }
+}
