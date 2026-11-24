@@ -1,0 +1,21 @@
+.row {
+  margin: 20px;
+}
+
+.card {
+  height: 100%;
+  background-color: #e7f1ff;
+  border: none;
+  border-radius: 20px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card-title {
+  color: #052c65;
+  font-weight: bold;
+}

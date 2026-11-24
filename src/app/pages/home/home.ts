@@ -3,11 +3,11 @@ import { Conference } from '../../models/conference';
 import { FormsModule } from '@angular/forms';
 import { UpperCasePipe } from '@angular/common';
 import {CommonModule} from '@angular/common';
-
+import { UserPage } from '../user/user';
 
 @Component({
   selector: 'app-home',
-  imports: [FormsModule, UpperCasePipe,CommonModule],
+  imports: [FormsModule, UpperCasePipe,CommonModule,UserPage],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

@@ -1,5 +1,8 @@
 import { createRequire } from 'module';const require = createRequire(import.meta.url);
 import {
+  index
+} from "./chunk-TAIT63V2.js";
+import {
   ActivatedRoute,
   ROUTES,
   Router,
@@ -70,9 +73,6 @@ import {
   ɵɵdefineNgModule,
   ɵɵinject
 } from "./chunk-KQNI2B2I.js";
-import {
-  index
-} from "./chunk-TAIT63V2.js";
 import {
   __objRest,
   __spreadProps,
@@ -12909,4 +12909,4 @@ export {
   AngularAppEngine,
   createRequestHandler
 };
-//# sourceMappingURL=chunk-WSXIXZEX.js.map
+//# sourceMappingURL=chunk-6DARJRLN.js.map

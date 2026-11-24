@@ -1,0 +1,38 @@
+<div class="row">
+
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">PROFIL UTILISATEUR</h5>
+        <p class="card-text">Nom : {{ user.nom }}</p>
+        <p class="card-text">Email : {{ user.email }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">LISTE DES AMIS</h5>
+        @for (ami of user.amis; track ami) {
+          <p class="card-text">{{ ami }}</p>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">NOTIFICATIONS</h5>
+        <p class="card-text">Vous avez {{ user.nbNotifications }} nouvelles notifications.</p>
+        <button class="btn btn-small btn-success" (click)="toggle()">Afficher les notifications</button>
+        @if (afficher) {
+          <p class="card-text mt-2">Nouvelle conference ajoutee</p>
+          <p class="card-text">Votre inscription est confirme</p>
+        }
+      </div>
+    </div>
+  </div>
+
+</div>

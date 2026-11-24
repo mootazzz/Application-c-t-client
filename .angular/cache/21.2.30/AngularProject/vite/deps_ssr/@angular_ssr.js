@@ -15,12 +15,12 @@ import {
   setAngularAppManifest,
   withAppShell,
   withRoutes
-} from "./chunk-WSXIXZEX.js";
+} from "./chunk-6DARJRLN.js";
+import "./chunk-TAIT63V2.js";
 import "./chunk-L4XNNR65.js";
 import "./chunk-U3CSVEK7.js";
 import "./chunk-CG3ZCSRI.js";
 import "./chunk-KQNI2B2I.js";
-import "./chunk-TAIT63V2.js";
 import "./chunk-S6STQDT5.js";
 export {
   AngularAppEngine,
